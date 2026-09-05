@@ -1,39 +1,56 @@
 import { useState, useEffect, useRef } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 const events = [
   {
-    year: "2019",
-    title: "El comienzo",
-    text: "Aquí comienza nuestra historia. Un momento que lo cambió todo.",
-    type: "image",
-    src: "/media/foto1.jpg",
-  },
-  {
-    year: "2020",
-    title: "Un nuevo capítulo",
-    text: "Llegó una nueva etapa, llena de experiencias y momentos que recordar.",
-    type: "video",
-    src: "/media/video1.mp4",
+    year: "2022",
+    title: "¿Me cuidas una planta?",
+    text: "Una de las primeras piedras de nuestra casa",
+    type: "text",
+    src: "Empezamos a conocernos y nos dimos cuenta de que teníamos muchas cosas en común. Hablar se sentía fluido, inspirador, divertido y pasional. Ver tu notificación de whatsapp me hacía siempre feliz.",
   },
   {
     year: "2022",
-    title: "Un momento especial",
-    text: "Una de esas experiencias que merece quedarse para siempre.",
+    title: "Primer beso",
+    text: "Estrellas, tormenta y amor. Mucho amor.",
+    type: "music",
+    src: "/media/video1.mp3",
+  },
+  {
+    year: "2022",
+    title: "La charla",
+    text: "Viniste a mi casa y tuve que convencerte de que lo nuestro tenía sentido.",
     type: "image",
     src: "/media/foto2.jpg",
   },
   {
-    year: "2024",
-    title: "Hasta aquí",
-    text: "Y esta es la historia hasta ahora...",
+    year: "2023",
+    title: "Primer viaje juntos",
+    text: "Nos fuimos a Tenerife buscando nuestro próximo lugar. Pero acabamos disfrutando de la isla sin presión.",
     type: "video",
     src: "/media/video2.mp4",
   },
 ];
+
+const mediaToRender = (event) => {
+  switch(event.type) {
+    case 'text':
+      return <p>{event.src}</p>;
+    case 'music':
+      return <audio controls src={event.src}></audio>
+    case 'image':
+      return <img src={event.src} alt={event.title} />
+    case 'video':
+      return <video
+        src={event.src}
+        controls
+        muted
+        playsInline
+      />
+    default:
+      return null;
+  }
+}
 
 function App() {
   const timelineRef = useRef(null);
@@ -118,16 +135,7 @@ function App() {
               <p>{event.text}</p>
 
               <div className="media">
-                {event.type === "image" ? (
-                  <img src={event.src} alt={event.title} />
-                ) : (
-                  <video
-                    src={event.src}
-                    controls
-                    muted
-                    playsInline
-                  />
-                )}
+                {mediaToRender(event)}
               </div>
             </div>
 
@@ -138,10 +146,6 @@ function App() {
             />
           </article>
         ))}
-      </section>
-
-      <section className="ending">
-        <h2>Continuará...</h2>
       </section>
     </>
   )
