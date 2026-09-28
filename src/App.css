@@ -74,10 +74,8 @@
 
 .timeline {
   position: relative;
-  width: min(1200px, 100%);
+  width: 100vw;
   margin: auto;
-
-  padding: 200px 40px 300px;
 }
 
 /* Línea gris */
@@ -89,7 +87,7 @@
   left: 50%;
   top: 0;
 
-  width: 4px;
+  width: 3px;
 
   transform: translateX(-50%);
 }
@@ -104,11 +102,12 @@
 /* Línea recorrida */
 
 .timeline-progress {
-  background: white;
-
+  background: var(--accent);
   height: 0;
-
   transition: height 0.1s linear;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* EVENTOS */
@@ -116,7 +115,7 @@
 .event {
   position: relative;
 
-  width: 50%;
+  width: 100%;
 
   margin-bottom: 300px;
 
@@ -126,15 +125,11 @@
     transform 1s ease;
 }
 
-.event-left {
-  padding-right: 80px;
-  transform: translateX(-80px);
-}
-
-.event-right {
-  margin-left: 50%;
-  padding-left: 80px;
-  transform: translateX(80px);
+.event-content {
+  max-width: 700px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .event.is-visible {
@@ -146,11 +141,11 @@
 
 .timeline-dot {
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
-  top: 20px;
-
-  width: 18px;
-  height: 18px;
+  width: 9px;
+  height: 9px;
 
   border-radius: 50%;
 
@@ -163,18 +158,9 @@
     border-color 0.5s;
 }
 
-.event-left .timeline-dot {
-  right: -9px;
-}
-
-.event-right .timeline-dot {
-  left: -9px;
-}
-
 .timeline-dot.active {
-  background: white;
-  border-color: white;
-  transform: scale(1.4);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* CONTENIDO */
@@ -194,6 +180,11 @@
   font-size: 18px;
   line-height: 1.7;
   opacity: 0.7;
+}
+
+.event-content {
+  position: relative;
+  overflow: hidden;
 }
 
 /* MEDIA */
@@ -228,30 +219,3 @@
 }
 
 /* MOBILE */
-
-@media (max-width: 700px) {
-  .timeline {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .timeline-track,
-  .timeline-progress {
-    left: 20px;
-  }
-
-  .event,
-  .event-left,
-  .event-right {
-    width: 100%;
-    margin-left: 0;
-    padding-left: 60px;
-    padding-right: 0;
-  }
-
-  .event-left .timeline-dot,
-  .event-right .timeline-dot {
-    left: -9px;
-    right: auto;
-  }
-}

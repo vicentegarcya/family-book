@@ -122,9 +122,7 @@ function App() {
 
         {events.map((event, index) => (
           <article
-            className={`event ${
-              index % 2 === 0 ? "event-left" : "event-right"
-            } ${visibleEvents.includes(index) ? "is-visible" : ""}`}
+            className={`event ${visibleEvents.includes(index) ? "is-visible" : ""}`}
             key={index}
           >
             <div className="event-content">
