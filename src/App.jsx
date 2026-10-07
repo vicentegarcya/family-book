@@ -5,30 +5,30 @@ const events = [
   {
     year: "2022",
     title: "¿Me cuidas una planta?",
-    text: "Una de las primeras piedras de nuestra casa",
-    type: "text",
-    src: "Empezamos a conocernos y nos dimos cuenta de que teníamos muchas cosas en común. Hablar se sentía fluido, inspirador, divertido y pasional. Ver tu notificación de whatsapp me hacía siempre feliz.",
-  },
-  {
-    year: "2022",
-    title: "Primer beso",
-    text: "Estrellas, tormenta y amor. Mucho amor.",
-    type: "music",
-    src: "/media/video1.mp3",
+    text: "Empezamos a conocernos y nos dimos cuenta de que teníamos muchas cosas en común. Hablar se sentía fluido, inspirador, divertido y pasional. Ver tu notificación de whatsapp me hacía siempre feliz.",
+    type: "image",
+    src: "./src/assets/IMG_6205.jpg",
   },
   {
     year: "2022",
     title: "La charla",
-    text: "Viniste a mi casa y tuve que convencerte de que lo nuestro tenía sentido.",
+    text: "Yo no sabía lo que éramos, pero sí sabía que quería tenerte cerca y que haría todo lo posible para ello. Ese día se puso el primer ladrillo de nuestra familia.",
     type: "image",
-    src: "/media/foto2.jpg",
+    src: "./src/assets/IMG_6383.jpg",
   },
   {
-    year: "2023",
-    title: "Primer viaje juntos",
-    text: "Nos fuimos a Tenerife buscando nuestro próximo lugar. Pero acabamos disfrutando de la isla sin presión.",
-    type: "video",
-    src: "/media/video2.mp4",
+    year: "2022",
+    title: "Primer 'viaje' juntos",
+    text: "Me enseñaste tu pueblo y fue nuestra primera convivencia. Recuerdo cenar con velas y sentir mucho amor.",
+    type: "image",
+    src: "./src/assets/IMG_6897.jpg",
+  },
+  {
+    year: "2022",
+    title: "Primera semilla",
+    text: "Todo empezó con una planta y siguió con nuestro primer árbol. El primer 'fruto' de nuestra relación.",
+    type: "image",
+    src: "./src/assets/328f3da5-5b50-4268-af30-104b775a4eeb.JPG",
   },
 ];
 
@@ -36,17 +36,8 @@ const mediaToRender = (event) => {
   switch(event.type) {
     case 'text':
       return <p>{event.src}</p>;
-    case 'music':
-      return <audio controls src={event.src}></audio>
     case 'image':
       return <img src={event.src} alt={event.title} />
-    case 'video':
-      return <video
-        src={event.src}
-        controls
-        muted
-        playsInline
-      />
     default:
       return null;
   }
@@ -113,13 +104,6 @@ function App() {
         </div>
       </section>
       <section className="timeline" ref={timelineRef}>
-        <div className="timeline-track" />
-
-        <div
-          className="timeline-progress"
-          style={{ height: `${progress}%` }}
-        />
-
         {events.map((event, index) => (
           <article
             className={`event ${visibleEvents.includes(index) ? "is-visible" : ""}`}
@@ -130,18 +114,12 @@ function App() {
 
               <h2>{event.title}</h2>
 
-              <p>{event.text}</p>
-
               <div className="media">
                 {mediaToRender(event)}
               </div>
-            </div>
 
-            <div
-              className={`timeline-dot ${
-                visibleEvents.includes(index) ? "active" : ""
-              }`}
-            />
+              <p>{event.text}</p>
+            </div>
           </article>
         ))}
       </section>
